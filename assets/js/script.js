@@ -1,8 +1,8 @@
 /**
  * Returns an array of all Dota2 Heroes and their attributes in the following order;
- * Hero name, Move speed, Attack range, Attack Type, Ultimate ability name.
+ * Hero name, Move speed, Attack range, Attack type, Ultimate ability name.
  */
-function returnHeroArray() {
+function returnHeroesArray() {
 let heroesArray = [
 
     // Strength Heroes    
@@ -90,7 +90,50 @@ let heroesArray = [
     ['Weaver', 275, 425, 'ranged', 'Time Lapse'],
     
     // Intelligence Heroes
-]
+    ['Ancient Apparition', 285, 675, 'ranged', 'Ice Blast'],
+    ['Bane', 305, 400, 'ranged', "Fiend's Grip"],
+    ['Batrider', 310, 400, 'ranged', 'Flaming Lasso'],
+    ['Chen', 305, 650, 'ranged', 'Hand of God'],
+    ['Crystal Maiden', 280, 600, 'ranged', 'Freezing Field'],
+    ['Dark Seer', 295, 150, 'melee', 'Wall of Replica'],
+    ['Dark Willow', 290, 475, 'ranged', 'Bedlam & Terrorize'],
+    ['Dazzle', 305, 575, 'ranged', 'Good Juju & Bad Juju'],
+    ['Death Prophet', 285, 600, 'ranged', 'Exorcism'],
+    ['Disruptor', 295, 625, 'ranged', 'Static Storm'],
+    ['Enchantress', 320, 575, 'ranged', 'Untouchable'],
+    ['Enigma', 290, 500, 'ranged', 'Black Hole'],
+    ['Grimstroke', 290, 600, 'ranged', 'Soulbind'],
+    ['Invoker', 285, 600, 'ranged', 'Invoke'],
+    ['Jakiro', 290, 400, 'ranged', 'Macropyre'],
+    ['Keeper of the Light', 320, 600, 'ranged', 'Spirit Form'],
+    ['Leshrac', 325, 575, 'ranged', 'Pulse Nova'],
+    ['Lich', 295, 550, 'ranged', 'Chain Frost'],
+    ['Lina', 290, 670, 'ranged', 'Laguna Blade'],
+    ['Lion', 290, 600, 'ranged', 'Finger of Death'],
+    ["Nature's Prophet", 295, 600, 'ranged', 'Wrath of Nature'],
+    ['Necrophos', 280, 500, 'ranged', "Reaper's Scythe"],
+    ['Ogre Magi', 290, 150, 'melee', 'Multicast'],
+    ['Oracle', 295, 620, 'ranged', 'False Promise'],
+    ['Outworld Destroyer', 320, 450, 'ranged', "Sanity's Eclipse"],
+    ['Puck', 290, 550, 'ranged', 'Dream Coil'],
+    ['Pugna', 330, 630, 'ranged', 'Life Drain'],
+    ['Queen of Pain', 290, 550, 'ranged', 'Sonic Wave'],
+    ['Rubick', 290, 550, 'ranged', 'Spell Steal'],
+    ['Shadow Demon', 290, 500, 'ranged', 'Demonic Purge'],
+    ['Shadow Shaman', 285, 400, 'ranged', 'Mass Serpent Ward'],
+    ['Silencer', 290, 600, 'ranged', 'Global Silence'],
+    ['Skywrath Mage', 325, 625, 'ranged', 'Mystic Flare'],
+    ['Storm Spirit', 285, 480, 'ranged', 'Ball Lightning'],
+    ['Techies', 300, 700, 'ranged', 'Proximity Mines'],
+    ['Tinker', 290, 500, 'ranged', 'Rearm'],
+    ['Visage', 280, 600, 'ranged', 'Summon Familiars'],
+    ['Void Spirit', 290, 200, 'melee', 'Astral Step'],
+    ['Warlock', 300, 600, 'ranged', 'Chaotic Offering'],
+    ['Windranger', 290, 600, 'ranged', 'Focus Fire'],
+    ['Winter Wyvern', 285, 425, 'ranged', "Winter's Curse"],
+    ['Witch Doctor', 300, 550, 'ranged', 'Death Ward'],
+    ['Zeus', 315, 380, 'ranged', "Thundergod's Wrath"]
+];
 
 return heroesArray};
 
@@ -100,7 +143,7 @@ return heroesArray};
  */
 function createHeroesObjects(){
 
-let heroesArray = returnHeroArray(); 
+let heroesArray = returnHeroesArray(); 
 let heroesObjects = [];
 
 for (let i = 0; i < heroesArray.length; i++){
@@ -121,11 +164,8 @@ for (let i = 0; i < heroesArray.length; i++){
     heroObject.ultimateName = heroArray[4];
     heroesObjects.push(heroObject);
 }
-console.log(heroesObjects);
-return heroesObjects
+return heroesObjects;
 }
-
-createHeroesObjects();
 
 /**
  * Creates an array of all Strength hero objects and selects one at random.
@@ -153,7 +193,7 @@ randomStrengthHero();
     let allHeroes = createHeroesObjects();
     let agilityHeroes = [];
     
-    for (i = 42; i < allHeroes.length; i++){
+    for (i = 42; i < 80; i++){
     agilityHeroes.push(allHeroes[i]);
    }
     console.log(agilityHeroes);
@@ -162,3 +202,21 @@ randomStrengthHero();
 }
 
 randomAgilityHero();
+
+/**
+ * Creates an array of all Intelligence hero objects and selects one at random.
+ * Logs intelligenceHeroesArray and the randomly selected hero to the console.
+ */
+ function randomIntelligenceHero(){
+    let allHeroes = createHeroesObjects();
+    let intelligenceHeroes = [];
+    
+    for (i = 80; i < allHeroes.length; i++){
+    intelligenceHeroes.push(allHeroes[i]);
+   }
+    console.log(intelligenceHeroes);
+    let randomIntelligenceHero = intelligenceHeroes[(Math.floor(Math.random()*38))];
+    console.log(randomIntelligenceHero)
+}
+
+randomIntelligenceHero();
