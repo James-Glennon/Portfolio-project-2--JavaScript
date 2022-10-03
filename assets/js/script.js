@@ -122,6 +122,43 @@ for (let i = 0; i < heroesArray.length; i++){
     heroesObjects.push(heroObject);
 }
 console.log(heroesObjects);
+return heroesObjects
 }
 
 createHeroesObjects();
+
+/**
+ * Creates an array of all Strength hero objects and selects one at random.
+ * Logs strengthHeroesArray and the randomly selected hero to the console.
+ */
+function randomStrengthHero(){
+    let allHeroes = createHeroesObjects();
+    let strengthHeroes = [];
+    
+    for (i = 0; i < 42; i++){
+    strengthHeroes.push(allHeroes[i]);
+   }
+    console.log(strengthHeroes);
+    let randomStrengthHero = strengthHeroes[(Math.floor(Math.random()*42))];
+    console.log(randomStrengthHero)
+}
+
+randomStrengthHero();
+
+/**
+ * Creates an array of all Agility hero objects and selects one at random.
+ * Logs agilityHeroesArray and the randomly selected hero to the console.
+ */
+ function randomAgilityHero(){
+    let allHeroes = createHeroesObjects();
+    let agilityHeroes = [];
+    
+    for (i = 42; i < allHeroes.length; i++){
+    agilityHeroes.push(allHeroes[i]);
+   }
+    console.log(agilityHeroes);
+    let randomAgilityHero = agilityHeroes[(Math.floor(Math.random()*38))];
+    console.log(randomAgilityHero)
+}
+
+randomAgilityHero();
