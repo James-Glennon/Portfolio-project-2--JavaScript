@@ -4,6 +4,7 @@
  */
 function returnHeroArray() {
 let heroesArray = [
+
     // Strength Heroes    
     ['Abaddon', 325, 150, 'melee', 'Borrowed Time'],
     ['Alchemist', 305, 150, 'melee', 'Chemical Rage'],
@@ -47,34 +48,80 @@ let heroesArray = [
     ['Underlord', 290, 200, 'melee', "Fiend's Gate"],
     ['Undying', 300, 150, 'melee', 'Flesh Golem'],
     ['Wraith King', 315, 150, 'melee', 'Reincarnation'],
-
+    
+    // Agility Heroes
+    ['Anti-Mage', 310, 150, 'melee', 'Mana Void'],
+    ['Arc Warden', 285, 625, 'ranged', 'Tempest Double'],
+    ['Bloodseeker', 300, 150, 'melee', 'Rupture'],
+    ['Bounty Hunter', 325, 150, 'melee', 'Track'],
+    ['Broodmother', 285, 150, 'melee', 'Spawn Spiderlings'],
+    ['Clinkz', 290, 600, 'ranged', 'Death Pact'],
+    ['Drow Ranger', 300, 625, 'ranged', 'Marksmanship'],
+    ['Ember Spirit', 300, 150, 'melee', 'Fire Remnant'],
+    ['Faceless Void', 300, 150, 'melee','Chronosphere'],
+    ['Gyrocopter', 315, 365, 'ranged', 'Call Down'],
+    ['Hoodwink', 310, 575, 'ranged', 'Sharpshooter'],
+    ['Juggernaut', 300, 150, 'melee', 'Omnislash'],
+    ['Lone Druid', 325, 550, 'ranged', 'True Form'],
+    ['Luna', 325, 330, 'ranged', 'Eclipse'],
+    ['Medusa', 275, 600, 'ranged', 'Stone Gaze'],
+    ['Meepo', 330, 150, 'melee', 'Divided We Stand'],
+    ['Mirana', 290, 630, 'ranged', 'Moonlight Shadow'],
+    ['Monkey King', 300, 300, 'melee', "Wukong's Command"],
+    ['Morphling', 285, 350, 'ranged', 'Morph'],
+    ['Naga Siren', 330, 150, 'melee', 'Song of the Siren'],
+    ['Nyx Assassin', 310, 150, 'melee', 'Vendetta'],
+    ['Pangolier', 300, 150, 'melee', 'Rolling Thunder'],
+    ['Phantom Assassin', 305,  150, 'melee', 'Coup de Grace'],
+    ['Phantom Lancer', 290,  150, 'melee', 'Juxtapose'],
+    ['Razor', 280, 475, 'ranged', 'Eye of the Storm'],
+    ['Riki', 315, 150, 'melee', 'Cloak and Dagger'],
+    ['Shadow Fiend', 305, 500, 'ranged', 'Requiem of Souls'],
+    ['Slark', 300,  150, 'melee', 'Shadow Dance'],
+    ['Sniper', 285, 550, 'ranged', 'Assassinate'],
+    ['Spectre', 290, 150, 'melee', 'Haunt'],
+    ['Templar Assassin', 305, 160, 'ranged', 'Psionic Trap'],
+    ['Terrorblade', 315,  150, 'melee', 'Sunder'],
+    ['Troll Warlord', 290, 500, 'ranged', 'Battle Trance'],
+    ['Ursa', 310, 150, 'melee', 'Enrage'],
+    ['Vengeful Spirit', 295, 400, 'ranged', 'Nether Swap'],
+    ['Venomancer', 280, 450, 'ranged', 'Poison Nova'],
+    ['Viper', 275, 575, 'ranged', 'Viper Strike'],
+    ['Weaver', 275, 425, 'ranged', 'Time Lapse'],
+    
+    // Intelligence Heroes
 ]
 
 return heroesArray};
 
 /**
- * Converts the heroArray() into a key/value paired object. 
+ * Converts the heroArray() into key/value paired objects and pushes the objects to an array.
+ * Returns the complete [{object} array].
  */
-function createHeroObject(){
-
-let heroObject = {
-    heroName: '',
-    moveSpeed: '',
-    attackRange: '',
-    attackType: '',
-    ultimateName: '',
-};
+function createHeroesObjects(){
 
 let heroesArray = returnHeroArray(); 
+let heroesObjects = [];
+
 for (let i = 0; i < heroesArray.length; i++){
+
+    let heroObject = {
+        heroName: '',
+        moveSpeed: '',
+        attackRange: '',
+        attackType: '',
+        ultimateName: '',
+    };
+
     let heroArray = heroesArray[i];
     heroObject.heroName = heroArray[0];
     heroObject.moveSpeed = heroArray[1];
     heroObject.attackRange = heroArray[2];
     heroObject.attackType = heroArray[3];
     heroObject.ultimateName = heroArray[4];
-    console.log(heroObject);
+    heroesObjects.push(heroObject);
+}
+console.log(heroesObjects);
 }
 
-}
-createHeroObject();
+createHeroesObjects();
