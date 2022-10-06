@@ -220,3 +220,29 @@ randomAgilityHero();
 }
 
 randomIntelligenceHero();
+
+/**
+ * Selects a random hero from the createHeroesObjects() array.
+ * pushed the selected hero to a randomHeroes array.
+ * spliced the selected hero from the createHeroesObjects() array to avoid repeats.
+ * logs the random heroes array to the console.
+ * @param {number of random heroes required} num1 
+ */
+function randomHeroes(num1){
+    let allHeroes = createHeroesObjects();
+    let randomHeroes = [];
+    console.log(allHeroes);
+
+    for (let i = 0; i < num1; i++) {
+        let randomEntry = allHeroes[(Math.floor(Math.random()*allHeroes.length))]
+        randomHeroes.push(randomEntry);
+        allHeroes.splice(randomEntry, 1);
+        
+        console.log(randomEntry);
+        console.log(allHeroes);
+    }
+
+    console.log(randomHeroes);
+}
+
+randomHeroes(3);
