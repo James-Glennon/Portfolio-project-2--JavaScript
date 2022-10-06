@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question-image {
+    width: 200px;
+    height: 200px;
+}
