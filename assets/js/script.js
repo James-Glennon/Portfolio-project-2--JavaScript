@@ -1,3 +1,10 @@
+//wait for page to finish loading before loading the game.
+//get the button elements and add event listeners to them.
+document.addEventListener('DOMContentLoaded', function(){
+    let buttons = document.getElementsByClassName("answer-image");
+    buttons[0].addEventListener('click',function(){alert('ping')})
+    buttons[1].addEventListener('click',function(){alert('pong')})
+    });
 /**
  * Returns an array of all Dota2 Heroes and their attributes in the following order;
  * Hero name, Move speed, Attack range, Attack type, Ultimate ability name.
