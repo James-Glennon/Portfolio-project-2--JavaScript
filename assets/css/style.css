@@ -1,5 +1,17 @@
 body {
     text-align: center;
+    background-image: radial-gradient(crimson, black);
+    color: whitesmoke;
+    font-family: 'Inter Tight', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+footer {
+    color: black;
+    background-color: white;
 }
 
 table {
