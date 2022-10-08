@@ -37,6 +37,12 @@ function moveSpeedQuestion() {
 function returnHeroesArray() {
     let heroesArray = [
 
+        /*
+        The stats below and most of the hero icons were sourced from 
+        the official dota 2 website, 'https://www.dota2.com/heroes'.
+        valid for patch 7.32c of DOTA 2.
+        */
+
         // Strength Heroes    
         ['Abaddon', 325, 150, 'melee', 'Borrowed Time'],
         ['Alchemist', 305, 150, 'melee', 'Chemical Rage'],
@@ -56,11 +62,13 @@ function returnHeroesArray() {
         ['Huskar', 295, 400, 'ranged', 'Life Break'],
         ['IO', 320, 500, 'ranged', 'Relocate'],
         ['Kunkka', 315, 150, 'melee', 'Ghostship'],
+        // Legion Commander icon sourced from Dota 2 fandom wiki
         ['Legion Commander', 330, 150, 'melee', 'Duel'],
         ['Lifestealer', 320, 150, 'melee', 'Infest'],
         ['Lycan', 305, 150, 'melee', 'Shapeshift'],
         ['Magnus', 305, 150, 'melee', 'Reverse Polarity'],
         ['Marci', 315, 150, 'melee', 'Unleash'],
+        // Mars icon sourced from Dota 2 fandom wiki
         ['Mars', 310, 250, 'melee', 'Arena of Blood'],
         ['Night Stalker', 295, 150, 'melee', 'Dark Ascension'],
         ['Omniknight', 315, 150, 'melee', 'Guardian Angel'],
