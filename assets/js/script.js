@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /**
  * Generates a question based on heroMoveSpeed.
+ * Changes button image based on heroObject.heroName.
  * Adds eventlisteners to the answer buttons.
  */
 function moveSpeedQuestion() {
