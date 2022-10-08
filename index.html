@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- DOTA2 favicon link sourced from 'https://www.favicon.cc/?action=icon&file_id=608998'-->
     <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <!-- Google fonts: Inter Tight and Playfair Display-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight&family=Playfair+Display:wght@600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Hero Head2Head (Fan Game)</title>
 </head>
@@ -14,14 +19,24 @@
 <body>
 
     <div class="heading-block">
-        <img src="assets/images/icons8-dota-2-200.png">
+        <img src="assets/images/icons8-dota-2-200.png" alt="the DOTA2 logo">
         <h1>Hero Head-to-Head</h1>
         <h2>A DOTA2 fan game inspired by "The Shopkeeper's Quiz"</h2>
     </div>
 
+    <div>
+        <h3>About</h3>
+        <p>The heroes of <span>DOTA2</span> go head to head in this quick 'higher or lower' quiz.
+            <em>
+                <br>"Who has the greater attack speed?"
+                <br>"Who has the longer attack range?"
+            </em>
+            <br>and more.</p>
+    </div>
+
     <div class="question-area">
-        <img class="question-image" src="#">
-        <p>Question Text</p>
+        <img class="question-image" src="#" alt="question-image">
+        <p id="question-text">Question Text</p>
     </div>
 
     <div class="answer-area">
@@ -39,12 +54,12 @@
             <tbody>
                 <tr>
                     <td>
-                        <img src="assets/images/hero-icons/abaddon_hero_icon.png">
+                        <img class="answer-image" id="answer1" src="assets/images/hero-icons/abaddon_hero_icon.png">
                     </td>
                     <td>
-                        <img src="assets/images/hero-icons/alchemist_hero_icon.png">
+                        <img class="answer-image" id="answer2" src="assets/images/hero-icons/alchemist_hero_icon.png">
                     </td>
-                </tr> 
+                </tr>
             </tbody>
         </table>
     </div>
