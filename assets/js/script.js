@@ -12,23 +12,52 @@ function moveSpeedQuestion() {
     document.getElementById('question-text').textContent = 'Which of these heroes has the greater base movement speed?'
 
     let allHeroes = createHeroesObjects();
-    document.getElementById('answer1').src = `assets/images/hero-icons/${allHeroes[0].heroName}_hero_icon.png`
-    document.getElementById('answer2').src = `assets/images/hero-icons/${allHeroes[2].heroName}_hero_icon.png`
+    let strengthHeroes = [];
+     
+    for (i = 0; i < 42; i++) {
+        strengthHeroes.push(allHeroes[i]);
+    }
+    
+    let randomEntry1 = strengthHeroes[Math.floor(Math.random()*strengthHeroes.length)]
+    strengthHeroes.splice(randomEntry1,1);
+    let randomEntry2 = strengthHeroes[Math.floor(Math.random()*strengthHeroes.length)]
+
+   
+    document.getElementById('answer1').src = `assets/images/hero-icons/${randomEntry1.heroName}_hero_icon.png`
+    document.getElementById('answer2').src = `assets/images/hero-icons/${randomEntry2.heroName}_hero_icon.png`
 
     let buttons = document.getElementsByClassName("answer-image");
     buttons[0].addEventListener('click', function () {
-        if (allHeroes[0].moveSpeed > allHeroes[2].moveSpeed) {
-            alert(`Correct. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[2].heroName} has ${allHeroes[2].moveSpeed}.`);
+        if (randomEntry1.moveSpeed >= randomEntry2.moveSpeed) {
+            alert(`Correct.
+            ${randomEntry1.heroName} has ${randomEntry1.moveSpeed} move speed,
+            while ${randomEntry2.heroName} has ${randomEntry2.moveSpeed}.`);
+            
+            incrementScore();
         }else {
-            alert(`Incorrect. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[2].heroName} has ${allHeroes[2].moveSpeed}.`);
-        }})
+            alert(`Incorrect.
+            ${randomEntry1.heroName} has ${randomEntry1.moveSpeed} move speed,
+            while ${randomEntry2.heroName} has ${randomEntry2.moveSpeed}.`);
+
+            incrementWrongAnswer();
+        }
+    });
         
     buttons[1].addEventListener('click', function () {
-        if (allHeroes[2].moveSpeed > allHeroes[0].moveSpeed) {
-            alert(`Correct. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[2].heroName} has ${allHeroes[2].moveSpeed}.`);
+        if (randomEntry2.moveSpeed >= randomEntry1.moveSpeed) {
+            alert(`Correct.
+            ${randomEntry1.heroName} has ${randomEntry1.moveSpeed} move speed,
+            while ${randomEntry2.heroName} has ${randomEntry2.moveSpeed}.`);
+
+            incrementScore();
         }else {
-            alert(`Incorrect. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[2].heroName} has ${allHeroes[2].moveSpeed}.`);
-        }})
+            alert(`Incorrect.
+            ${randomEntry1.heroName} has ${randomEntry1.moveSpeed} move speed,
+            while ${randomEntry2.heroName} has ${randomEntry2.moveSpeed}.`);
+
+            incrementWrongAnswer();
+        }
+    });
 };
         
 /**
@@ -51,7 +80,7 @@ function returnHeroesArray() {
         ['Beastmaster', 305, 150, 'melee', 'Primal Roar'],
         ['Brewmaster', 310, 150, 'melee', 'Primal Split'],
         ['Bristleback', 295, 150, 'melee', 'Warpath'],
-        ['Centaur Warrunner', 150, 300, 'melee', 'Stampede'],
+        ['Centaur Warrunner', 300, 150, 'melee', 'Stampede'],
         ['Chaos Knight', 325, 150, 'melee', 'Phantasm'],
         ['Clockwerk', 310, 150, 'melee', 'Hookshot'],
         ['Dawnbreaker', 310, 150, 'melee', 'Solar Guardian'],
@@ -211,7 +240,7 @@ function createHeroesObjects() {
 
 /**
  * Creates an array of all Strength hero objects and selects one at random.
- * Logs strengthHeroesArray and the randomly selected hero to the console.
+ * Logs the randomly selected hero to the console.
  */
 function randomStrengthHero() {
     let allHeroes = createHeroesObjects();
@@ -220,7 +249,6 @@ function randomStrengthHero() {
     for (i = 0; i < 42; i++) {
         strengthHeroes.push(allHeroes[i]);
     }
-    console.log(strengthHeroes);
     let randomStrengthHero = strengthHeroes[(Math.floor(Math.random() * 42))];
     console.log(randomStrengthHero)
 }
@@ -229,7 +257,7 @@ randomStrengthHero();
 
 /**
  * Creates an array of all Agility hero objects and selects one at random.
- * Logs agilityHeroesArray and the randomly selected hero to the console.
+ * Logs the randomly selected hero to the console.
  */
 function randomAgilityHero() {
     let allHeroes = createHeroesObjects();
@@ -237,8 +265,7 @@ function randomAgilityHero() {
 
     for (i = 42; i < 80; i++) {
         agilityHeroes.push(allHeroes[i]);
-    }
-    console.log(agilityHeroes);
+    };
     let randomAgilityHero = agilityHeroes[(Math.floor(Math.random() * 38))];
     console.log(randomAgilityHero)
 }
@@ -247,7 +274,7 @@ randomAgilityHero();
 
 /**
  * Creates an array of all Intelligence hero objects and selects one at random.
- * Logs intelligenceHeroesArray and the randomly selected hero to the console.
+ * Logs the randomly selected hero to the console.
  */
 function randomIntelligenceHero() {
     let allHeroes = createHeroesObjects();
@@ -256,7 +283,6 @@ function randomIntelligenceHero() {
     for (i = 80; i < allHeroes.length; i++) {
         intelligenceHeroes.push(allHeroes[i]);
     }
-    console.log(intelligenceHeroes);
     let randomIntelligenceHero = intelligenceHeroes[(Math.floor(Math.random() * 38))];
     console.log(randomIntelligenceHero)
 }
@@ -273,7 +299,6 @@ randomIntelligenceHero();
 function randomHeroes(num1) {
     let allHeroes = createHeroesObjects();
     let randomHeroes = [];
-    console.log(allHeroes);
 
     for (let i = 0; i < num1; i++) {
         let randomEntry = allHeroes[(Math.floor(Math.random() * allHeroes.length))]
@@ -281,10 +306,33 @@ function randomHeroes(num1) {
         allHeroes.splice(randomEntry, 1);
 
         console.log(randomEntry);
-        console.log(allHeroes);
-    }
+    };
 
     console.log(randomHeroes);
-}
+};
 
 randomHeroes(3);
+
+// Copied from Code Institute: Love Maths project
+/**
+ * Gets the current score from the DOM and increment by 1.
+ */
+ function incrementScore() {
+
+    let oldScore = parseInt(document.getElementById('score').innerHTML);
+    document.getElementById('score').innerHTML = ++oldScore;
+
+    moveSpeedQuestion();
+}
+
+// Copied from Code Institute: Love Maths project
+/**
+ * Gets the current tally of incorrect answers from the DOM and increments by 1.
+ */
+ function incrementWrongAnswer() {
+
+    let oldScore = parseInt(document.getElementById('incorrect').innerHTML);
+    document.getElementById('incorrect').innerHTML = ++oldScore;
+
+    moveSpeedQuestion();
+}
