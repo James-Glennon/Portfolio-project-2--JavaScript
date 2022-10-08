@@ -12,21 +12,21 @@ function moveSpeedQuestion() {
 
     let allHeroes = createHeroesObjects();
     document.getElementById('answer1').src = `assets/images/hero-icons/${allHeroes[0].heroName}_hero_icon.png`
-    document.getElementById('answer2').src = `assets/images/hero-icons/${allHeroes[1].heroName}_hero_icon.png`
+    document.getElementById('answer2').src = `assets/images/hero-icons/${allHeroes[2].heroName}_hero_icon.png`
 
     let buttons = document.getElementsByClassName("answer-image");
     buttons[0].addEventListener('click', function () {
-        if (allHeroes[0].moveSpeed > allHeroes[1].moveSpeed) {
-            alert(`Correct. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[1].heroName} has ${allHeroes[1].moveSpeed}.`);
+        if (allHeroes[0].moveSpeed > allHeroes[2].moveSpeed) {
+            alert(`Correct. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[2].heroName} has ${allHeroes[2].moveSpeed}.`);
         }else {
-            alert(`Incorrect. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[1].heroName} has ${allHeroes[1].moveSpeed}.`);
+            alert(`Incorrect. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[2].heroName} has ${allHeroes[2].moveSpeed}.`);
         }})
         
     buttons[1].addEventListener('click', function () {
-        if (allHeroes[1].moveSpeed > allHeroes[0].moveSpeed) {
-            alert(`Correct. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[1].heroName} has ${allHeroes[1].moveSpeed}.`);
+        if (allHeroes[2].moveSpeed > allHeroes[0].moveSpeed) {
+            alert(`Correct. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[2].heroName} has ${allHeroes[2].moveSpeed}.`);
         }else {
-            alert(`Incorrect. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[1].heroName} has ${allHeroes[1].moveSpeed}.`);
+            alert(`Incorrect. ${allHeroes[0].heroName} has ${allHeroes[0].moveSpeed} move speed, while ${allHeroes[2].heroName} has ${allHeroes[2].moveSpeed}.`);
         }})
 };
         
