@@ -42,3 +42,7 @@ table {
     background-color: aqua;
     border: 4px solid gold;
 }
+
+#answer1:hover, #answer2:hover {
+    cursor: pointer;
+}
