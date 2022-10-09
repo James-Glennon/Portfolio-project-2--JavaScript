@@ -211,11 +211,8 @@ function generateRandomHeroes(num1) {
         let randomEntry = allHeroes[(Math.floor(Math.random() * allHeroes.length))]
         randomHeroes.push(randomEntry);
         allHeroes.splice(randomEntry, 1);
-
-        console.log(randomEntry);
     };
 
-    console.log(randomHeroes);
     return randomHeroes;
 };
 
@@ -227,7 +224,6 @@ function moveSpeedQuestion() {
     document.getElementById('question-text').textContent = 'Which of these heroes has the greater base movement speed?'
 
     generateQuestionArray();
-    console.log(questionArray);
 
     document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
     document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
