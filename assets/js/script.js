@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
     moveSpeedQuestion();
 });
 
+// Array of heroes used to generate questions. Must contain only 2 entries
+let questionArray = [];
+
 /**
  * Generates a question based on heroMoveSpeed.
  * Changes button image based on heroObject.heroName.
@@ -10,50 +13,41 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 function moveSpeedQuestion() {
     document.getElementById('question-text').textContent = 'Which of these heroes has the greater base movement speed?'
-
-    let allHeroes = createHeroesObjects();
-    let strengthAgilityHeroes = [];
-     
-    for (i = 0; i < 80; i++) {
-        strengthAgilityHeroes.push(allHeroes[i]);
-    }
     
-    let randomEntry1 = strengthAgilityHeroes[Math.floor(Math.random()*strengthAgilityHeroes.length)]
-    strengthAgilityHeroes.splice(randomEntry1,1);
-    let randomEntry2 = strengthAgilityHeroes[Math.floor(Math.random()*strengthAgilityHeroes.length)]
+    questionArray = randomHeroes(2);
+    console.log(questionArray);
 
-   
-    document.getElementById('answer1').src = `assets/images/hero-icons/${randomEntry1.heroName}_hero_icon.png`
-    document.getElementById('answer2').src = `assets/images/hero-icons/${randomEntry2.heroName}_hero_icon.png`
+    document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
+    document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
 
     let buttons = document.getElementsByClassName("answer-image");
     buttons[0].addEventListener('click', function () {
-        if (randomEntry1.moveSpeed >= randomEntry2.moveSpeed) {
+        if (questionArray[0].moveSpeed >= questionArray[1].moveSpeed) {
             alert(`Correct.
-            ${randomEntry1.heroName} has ${randomEntry1.moveSpeed} move speed,
-            while ${randomEntry2.heroName} has ${randomEntry2.moveSpeed}.`);
+            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
+            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
             
             incrementScore();
         }else {
             alert(`Incorrect.
-            ${randomEntry1.heroName} has ${randomEntry1.moveSpeed} move speed,
-            while ${randomEntry2.heroName} has ${randomEntry2.moveSpeed}.`);
+            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
+            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
 
             incrementWrongAnswer();
         }
     });
         
     buttons[1].addEventListener('click', function () {
-        if (randomEntry2.moveSpeed >= randomEntry1.moveSpeed) {
+        if (questionArray[1].moveSpeed >= questionArray[0].moveSpeed) {
             alert(`Correct.
-            ${randomEntry1.heroName} has ${randomEntry1.moveSpeed} move speed,
-            while ${randomEntry2.heroName} has ${randomEntry2.moveSpeed}.`);
+            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
+            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
 
             incrementScore();
         }else {
             alert(`Incorrect.
-            ${randomEntry1.heroName} has ${randomEntry1.moveSpeed} move speed,
-            while ${randomEntry2.heroName} has ${randomEntry2.moveSpeed}.`);
+            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
+            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
 
             incrementWrongAnswer();
         }
@@ -240,61 +234,10 @@ function createHeroesObjects() {
 }
 
 /**
- * Creates an array of all Strength hero objects and selects one at random.
- * Logs the randomly selected hero to the console.
- */
-function randomStrengthHero() {
-    let allHeroes = createHeroesObjects();
-    let strengthHeroes = [];
-
-    for (i = 0; i < 42; i++) {
-        strengthHeroes.push(allHeroes[i]);
-    }
-    let randomStrengthHero = strengthHeroes[(Math.floor(Math.random() * 42))];
-    console.log(randomStrengthHero)
-}
-
-randomStrengthHero();
-
-/**
- * Creates an array of all Agility hero objects and selects one at random.
- * Logs the randomly selected hero to the console.
- */
-function randomAgilityHero() {
-    let allHeroes = createHeroesObjects();
-    let agilityHeroes = [];
-
-    for (i = 42; i < 80; i++) {
-        agilityHeroes.push(allHeroes[i]);
-    };
-    let randomAgilityHero = agilityHeroes[(Math.floor(Math.random() * 38))];
-    console.log(randomAgilityHero)
-}
-
-randomAgilityHero();
-
-/**
- * Creates an array of all Intelligence hero objects and selects one at random.
- * Logs the randomly selected hero to the console.
- */
-function randomIntelligenceHero() {
-    let allHeroes = createHeroesObjects();
-    let intelligenceHeroes = [];
-
-    for (i = 80; i < allHeroes.length; i++) {
-        intelligenceHeroes.push(allHeroes[i]);
-    }
-    let randomIntelligenceHero = intelligenceHeroes[(Math.floor(Math.random() * 38))];
-    console.log(randomIntelligenceHero)
-}
-
-randomIntelligenceHero();
-
-/**
  * Selects a random hero from the createHeroesObjects() array.
  * pushed the selected hero to a randomHeroes array.
  * spliced the selected hero from the createHeroesObjects() array to avoid repeats.
- * logs the random heroes array to the console.
+ * logs and returns the random heroes array to the console.
  * @param {number of random heroes required} num1 
  */
 function randomHeroes(num1) {
@@ -310,9 +253,8 @@ function randomHeroes(num1) {
     };
 
     console.log(randomHeroes);
+    return randomHeroes;
 };
-
-randomHeroes(3);
 
 // Copied from Code Institute: Love Maths project
 /**
