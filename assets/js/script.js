@@ -9,7 +9,7 @@ let questionArray = [];
 // Declares the randomHeroes array.
 let randomHeroes = [];
 
-function generateQuestionArray(){
+function generateQuestionArray() {
     questionArray = generateRandomHeroes(2);
     return questionArray;
 }
@@ -221,7 +221,10 @@ function generateRandomHeroes(num1) {
  * Changes button image based on heroObject.heroName.
  */
 function moveSpeedQuestion() {
-    document.getElementById('question-text').textContent = 'Which of these heroes has the greater base movement speed?'
+    document.getElementById('question-text').textContent = 'Which of these heroes has the greater base movement speed?';
+    document.getElementById('question-image').src = 'assets/images/attribute-icons/movement_speed_icon.png';
+    document.getElementById('question-image').alt = 'The DOTA2 movement speed icon.';
+
 
     generateQuestionArray();
 
@@ -236,19 +239,19 @@ function moveSpeedQuestion() {
             alert(`Correct.
             ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
             while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-    
+
             incrementScore(eventListenerA, eventListenerB);
-    
+
         } else {
             alert(`Incorrect.
             ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
             while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-    
+
             incrementWrongAnswer(eventListenerA, eventListenerB);
         }
     };
     questionButtons[0].addEventListener('click', eventListenerA);
-  
+
     /**
      * defines the function that sets the moveSpeedQuestion listener for button A.
      */
@@ -257,16 +260,16 @@ function moveSpeedQuestion() {
             alert(`Correct.
             ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
             while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-            
+
             incrementScore(eventListenerA, eventListenerB);
-    
+
         } else {
             alert(`Incorrect.
             ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
             while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-    
+
             incrementWrongAnswer(eventListenerA, eventListenerB);
-        }  
+        }
     };
     questionButtons[1].addEventListener('click', eventListenerB);
 };
@@ -279,11 +282,11 @@ function incrementScore(function1, function2) {
 
     let oldScore = parseInt(document.getElementById('score').innerHTML);
     document.getElementById('score').innerHTML = ++oldScore;
-    
-    
+
+
     questionButtons[0].removeEventListener('click', function1);
     questionButtons[1].removeEventListener('click', function2);
-    
+
 
     generateQuestionArray();
     moveSpeedQuestion();
@@ -300,10 +303,10 @@ function incrementWrongAnswer(function1, function2) {
     let oldScore = parseInt(document.getElementById('incorrect').innerHTML);
     document.getElementById('incorrect').innerHTML = ++oldScore;
 
-    
+
     questionButtons[0].removeEventListener('click', function1);
-    questionButtons[1].removeEventListener('click', function2); 
-    
+    questionButtons[1].removeEventListener('click', function2);
+
 
     generateQuestionArray();
     moveSpeedQuestion();
