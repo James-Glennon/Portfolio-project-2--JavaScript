@@ -1,7 +1,12 @@
-//wait for page to finish loading before loading the game.
+// Declarations
+
+// Wait for page to finish loading before loading the game.
 document.addEventListener('DOMContentLoaded', function () {
-    moveSpeedQuestion();
+    attackRangeQuestion();
 });
+
+// Defines the img#"answer-image" as questionButtons array.
+let questionButtons = document.getElementsByClassName("answer-image");
 
 // Array of heroes used to generate questions. Must contain only 2 entries.
 let questionArray = [];
@@ -9,13 +14,8 @@ let questionArray = [];
 // Declares the randomHeroes array.
 let randomHeroes = [];
 
-function generateMoveSpeedQuestionArray() {
-    questionArray = generateRandomMoveSpeedHeroes(2);
-    return questionArray;
-}
 
-// defines the img#"answer-image" as questionButtons array.
-let questionButtons = document.getElementsByClassName("answer-image");
+// Dictionary array functions
 
 /**
  * Returns an array of all Dota2 Heroes and their attributes in the following order;
@@ -196,6 +196,18 @@ function createHeroesObjects() {
     return heroesObjects;
 }
 
+
+// moveSpeed functions
+
+/**
+ * assigns the values of the previously declared questionArray
+ * @returns [{randomHero}, {randomHero(where moveSpeed is NOT equal)}]
+ */
+ function generateMoveSpeedQuestionArray() {
+    questionArray = generateRandomMoveSpeedHeroes(2);
+    return questionArray;
+}
+
 /**
  * Selects a random hero from the createHeroesObjects() array.
  * pushes the selected hero to a randomHeroes array [0].
@@ -262,7 +274,7 @@ function moveSpeedQuestion() {
     questionButtons[0].addEventListener('click', eventListenerA);
 
     /**
-     * defines the function that sets the moveSpeedQuestion listener for button A.
+     * defines the function that sets the moveSpeedQuestion listener for button B.
      */
     let eventListenerB = function () {
         if (questionArray[1].moveSpeed >= questionArray[0].moveSpeed) {
@@ -283,6 +295,108 @@ function moveSpeedQuestion() {
     questionButtons[1].addEventListener('click', eventListenerB);
 };
 
+
+// attackRange functions
+
+/**
+ * assigns the values of the previously declared questionArray
+ * @returns [{randomHero}, {randomHero(where moveSpeed is NOT equal)}]
+ */
+ function generateAttackRangeQuestionArray() {
+    questionArray = generateRandomAttackRangeHeroes(2);
+    return questionArray;
+}
+
+/**
+ * Selects a random hero from the createHeroesObjects() array.
+ * pushes the selected hero to a randomHeroes array [0].
+ * while randomHeroes.length is less than num1,
+ * loops through randomEntries till moveSpeed is NOT equal.
+ * pushes the NOT equal entry to the randomHeroes array [1].
+ * only works for a max of 2 entries.
+ * @param {number of random heroes required} num1.
+ */
+function generateRandomAttackRangeHeroes(num1) {
+    let allHeroes = createHeroesObjects();
+    randomHeroes = [];
+
+    let randomEntry = allHeroes[(Math.floor(Math.random() * allHeroes.length))];
+    randomHeroes.push(randomEntry);
+
+    while (randomHeroes.length < num1) {
+        randomEntry = allHeroes[(Math.floor(Math.random() * allHeroes.length))];
+
+        if (randomEntry.attackRange === randomHeroes[0].attackRange) {
+            continue;
+        } else {
+            randomHeroes.push(randomEntry);
+        }
+    }
+
+    return randomHeroes;
+};
+
+/**
+ * Generates a question based on heroAttackRange.
+ * Changes button image based on heroObject.heroName.
+ */
+function attackRangeQuestion() {
+    document.getElementById('question-text').textContent = 'Which of these heroes has the longer base attack range (without abilities)?';
+    document.getElementById('question-image').src = 'assets/images/attribute-icons/attack_range_icon.png';
+    document.getElementById('question-image').alt = 'The DOTA2 attack range icon.';
+
+
+    generateAttackRangeQuestionArray();
+
+    document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
+    document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
+
+    /**
+     * defines the function that sets the attackRangeQuestion listener for button A.
+     */
+    let eventListenerA = function () {
+        if (questionArray[0].attackRange >= questionArray[1].attackRange) {
+            alert(`Correct.
+            ${questionArray[0].heroName} has ${questionArray[0].attackRange} attack range,
+            while ${questionArray[1].heroName} has ${questionArray[1].attackRange}.`);
+
+            incrementScore(eventListenerA, eventListenerB);
+
+        } else {
+            alert(`Incorrect.
+            ${questionArray[0].heroName} has ${questionArray[0].attackRange} attack range,
+            while ${questionArray[1].heroName} has ${questionArray[1].attackRange}.`);
+
+            incrementWrongAnswer(eventListenerA, eventListenerB);
+        }
+    };
+    questionButtons[0].addEventListener('click', eventListenerA);
+
+    /**
+     * defines the function that sets the attackRangeQuestion listener for button B.
+     */
+    let eventListenerB = function () {
+        if (questionArray[1].attackRange >= questionArray[0].attackRange) {
+            alert(`Correct.
+            ${questionArray[0].heroName} has ${questionArray[0].attackRange} attack range,
+            while ${questionArray[1].heroName} has ${questionArray[1].attackRange}.`);
+
+            incrementScore(eventListenerA, eventListenerB);
+
+        } else {
+            alert(`Incorrect.
+            ${questionArray[0].heroName} has ${questionArray[0].attackRange} attack range,
+            while ${questionArray[1].heroName} has ${questionArray[1].attackRange}.`);
+
+            incrementWrongAnswer(eventListenerA, eventListenerB);
+        }
+    };
+    questionButtons[1].addEventListener('click', eventListenerB);
+};
+
+
+//Increment functions
+
 // Copied from Code Institute: Love Maths project
 /**
  * Gets the current score from the DOM and increment by 1.
@@ -297,8 +411,8 @@ function incrementScore(function1, function2) {
     questionButtons[1].removeEventListener('click', function2);
 
 
-    generateMoveSpeedQuestionArray();
-    moveSpeedQuestion();
+    generateAttackRangeQuestionArray();
+    attackRangeQuestion();
 }
 
 // Copied from Code Institute: Love Maths project
@@ -317,6 +431,6 @@ function incrementWrongAnswer(function1, function2) {
     questionButtons[1].removeEventListener('click', function2);
 
 
-    generateMoveSpeedQuestionArray();
-    moveSpeedQuestion();
+    generateAttackRangeQuestionArray();
+    attackRangeQuestion();
 }
