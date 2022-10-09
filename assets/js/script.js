@@ -12,15 +12,15 @@ function moveSpeedQuestion() {
     document.getElementById('question-text').textContent = 'Which of these heroes has the greater base movement speed?'
 
     let allHeroes = createHeroesObjects();
-    let strengthHeroes = [];
+    let strengthAgilityHeroes = [];
      
-    for (i = 0; i < 42; i++) {
-        strengthHeroes.push(allHeroes[i]);
+    for (i = 0; i < 80; i++) {
+        strengthAgilityHeroes.push(allHeroes[i]);
     }
     
-    let randomEntry1 = strengthHeroes[Math.floor(Math.random()*strengthHeroes.length)]
-    strengthHeroes.splice(randomEntry1,1);
-    let randomEntry2 = strengthHeroes[Math.floor(Math.random()*strengthHeroes.length)]
+    let randomEntry1 = strengthAgilityHeroes[Math.floor(Math.random()*strengthAgilityHeroes.length)]
+    strengthAgilityHeroes.splice(randomEntry1,1);
+    let randomEntry2 = strengthAgilityHeroes[Math.floor(Math.random()*strengthAgilityHeroes.length)]
 
    
     document.getElementById('answer1').src = `assets/images/hero-icons/${randomEntry1.heroName}_hero_icon.png`
