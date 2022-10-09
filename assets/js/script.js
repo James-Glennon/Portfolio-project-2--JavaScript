@@ -3,8 +3,19 @@ document.addEventListener('DOMContentLoaded', function () {
     moveSpeedQuestion();
 });
 
-// Array of heroes used to generate questions. Must contain only 2 entries
+// Array of heroes used to generate questions. Must contain only 2 entries.
 let questionArray = [];
+
+// Declares the randomHeroes array.
+let randomHeroes = [];
+
+function generateQuestionArray(){
+    questionArray = generateRandomHeroes(2);
+    return questionArray;
+}
+
+// defines the img#"answer-image" as questionButtons array.
+let questionButtons = document.getElementsByClassName("answer-image");
 
 /**
  * Returns an array of all Dota2 Heroes and their attributes in the following order;
@@ -192,9 +203,9 @@ function createHeroesObjects() {
  * logs and returns the random heroes array to the console.
  * @param {number of random heroes required} num1 
  */
-function randomHeroes(num1) {
+function generateRandomHeroes(num1) {
     let allHeroes = createHeroesObjects();
-    let randomHeroes = [];
+    randomHeroes = [];
 
     for (let i = 0; i < num1; i++) {
         let randomEntry = allHeroes[(Math.floor(Math.random() * allHeroes.length))]
@@ -211,71 +222,93 @@ function randomHeroes(num1) {
 /**
  * Generates a question based on heroMoveSpeed.
  * Changes button image based on heroObject.heroName.
- * Adds eventlisteners to the answer buttons.
  */
 function moveSpeedQuestion() {
     document.getElementById('question-text').textContent = 'Which of these heroes has the greater base movement speed?'
-    
-    questionArray = randomHeroes(2);
+
+    generateQuestionArray();
     console.log(questionArray);
 
     document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
     document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
 
-    let buttons = document.getElementsByClassName("answer-image");
-    buttons[0].addEventListener('click', function () {
+    /**
+     * defines the function that sets the moveSpeedQuestion listener for button A.
+     */
+    let eventListenerA = function () {
         if (questionArray[0].moveSpeed >= questionArray[1].moveSpeed) {
             alert(`Correct.
             ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
             while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-            
-            incrementScore();
-        }else {
+    
+            incrementScore(eventListenerA, eventListenerB);
+    
+        } else {
             alert(`Incorrect.
             ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
             while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-
-            incrementWrongAnswer();
+    
+            incrementWrongAnswer(eventListenerA, eventListenerB);
         }
-    });
-        
-    buttons[1].addEventListener('click', function () {
+    };
+    questionButtons[0].addEventListener('click', eventListenerA);
+  
+    /**
+     * defines the function that sets the moveSpeedQuestion listener for button A.
+     */
+    let eventListenerB = function () {
         if (questionArray[1].moveSpeed >= questionArray[0].moveSpeed) {
             alert(`Correct.
             ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
             while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-
-            incrementScore();
-        }else {
+            
+            incrementScore(eventListenerA, eventListenerB);
+    
+        } else {
             alert(`Incorrect.
             ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
             while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-
-            incrementWrongAnswer();
-        }
-    });
+    
+            incrementWrongAnswer(eventListenerA, eventListenerB);
+        }  
+    };
+    questionButtons[1].addEventListener('click', eventListenerB);
 };
 
 // Copied from Code Institute: Love Maths project
 /**
  * Gets the current score from the DOM and increment by 1.
  */
- function incrementScore() {
+function incrementScore(function1, function2) {
 
     let oldScore = parseInt(document.getElementById('score').innerHTML);
     document.getElementById('score').innerHTML = ++oldScore;
+    
+    
+    questionButtons[0].removeEventListener('click', function1);
+    questionButtons[1].removeEventListener('click', function2);
+    
 
+    generateQuestionArray();
     moveSpeedQuestion();
 }
 
 // Copied from Code Institute: Love Maths project
 /**
  * Gets the current tally of incorrect answers from the DOM and increments by 1.
+ * additionally removes the previously set eventListeners from button 1 and 2.
+ * @param{listenerFunction to be removed from buttonA, listenerFunction to be removed from buttonB}.
  */
- function incrementWrongAnswer() {
+function incrementWrongAnswer(function1, function2) {
 
     let oldScore = parseInt(document.getElementById('incorrect').innerHTML);
     document.getElementById('incorrect').innerHTML = ++oldScore;
 
+    
+    questionButtons[0].removeEventListener('click', function1);
+    questionButtons[1].removeEventListener('click', function2); 
+    
+
+    generateQuestionArray();
     moveSpeedQuestion();
 }
