@@ -31,8 +31,11 @@ table {
 .heading-block {
     color: white;
     background-color: rgb(62, 66, 70);
-    border-radius: 25%;
+    border-radius: 20%;
     border: 2px gold solid;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #question-image {
@@ -45,4 +48,5 @@ table {
 
 #answer1:hover, #answer2:hover {
     cursor: pointer;
+    border: 2px solid white;
 }
