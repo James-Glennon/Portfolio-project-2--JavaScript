@@ -9,8 +9,8 @@ let questionArray = [];
 // Declares the randomHeroes array.
 let randomHeroes = [];
 
-function generateQuestionArray() {
-    questionArray = generateRandomHeroes(2);
+function generateMoveSpeedQuestionArray() {
+    questionArray = generateRandomMoveSpeedHeroes(2);
     return questionArray;
 }
 
@@ -198,20 +198,29 @@ function createHeroesObjects() {
 
 /**
  * Selects a random hero from the createHeroesObjects() array.
- * pushed the selected hero to a randomHeroes array.
- * spliced the selected hero from the createHeroesObjects() array to avoid repeats.
- * logs and returns the random heroes array to the console.
- * @param {number of random heroes required} num1 
+ * pushes the selected hero to a randomHeroes array [0].
+ * while randomHeroes.length is less than num1,
+ * loops through randomEntries till moveSpeed is NOT equal.
+ * pushes the NOT equal entry to the randomHeroes array [1].
+ * only works for a max of 2 entries.
+ * @param {number of random heroes required} num1.
  */
-function generateRandomHeroes(num1) {
+function generateRandomMoveSpeedHeroes(num1) {
     let allHeroes = createHeroesObjects();
     randomHeroes = [];
 
-    for (let i = 0; i < num1; i++) {
-        let randomEntry = allHeroes[(Math.floor(Math.random() * allHeroes.length))]
-        randomHeroes.push(randomEntry);
-        allHeroes.splice(randomEntry, 1);
-    };
+    let randomEntry = allHeroes[(Math.floor(Math.random() * allHeroes.length))];
+    randomHeroes.push(randomEntry);
+
+    while (randomHeroes.length < num1) {
+        randomEntry = allHeroes[(Math.floor(Math.random() * allHeroes.length))];
+
+        if (randomEntry.moveSpeed === randomHeroes[0].moveSpeed) {
+            continue;
+        } else {
+            randomHeroes.push(randomEntry);
+        }
+    }
 
     return randomHeroes;
 };
@@ -226,7 +235,7 @@ function moveSpeedQuestion() {
     document.getElementById('question-image').alt = 'The DOTA2 movement speed icon.';
 
 
-    generateQuestionArray();
+    generateMoveSpeedQuestionArray();
 
     document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
     document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
@@ -288,7 +297,7 @@ function incrementScore(function1, function2) {
     questionButtons[1].removeEventListener('click', function2);
 
 
-    generateQuestionArray();
+    generateMoveSpeedQuestionArray();
     moveSpeedQuestion();
 }
 
@@ -308,6 +317,6 @@ function incrementWrongAnswer(function1, function2) {
     questionButtons[1].removeEventListener('click', function2);
 
 
-    generateQuestionArray();
+    generateMoveSpeedQuestionArray();
     moveSpeedQuestion();
 }
