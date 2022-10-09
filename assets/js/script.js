@@ -7,54 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
 let questionArray = [];
 
 /**
- * Generates a question based on heroMoveSpeed.
- * Changes button image based on heroObject.heroName.
- * Adds eventlisteners to the answer buttons.
- */
-function moveSpeedQuestion() {
-    document.getElementById('question-text').textContent = 'Which of these heroes has the greater base movement speed?'
-    
-    questionArray = randomHeroes(2);
-    console.log(questionArray);
-
-    document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
-    document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
-
-    let buttons = document.getElementsByClassName("answer-image");
-    buttons[0].addEventListener('click', function () {
-        if (questionArray[0].moveSpeed >= questionArray[1].moveSpeed) {
-            alert(`Correct.
-            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
-            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-            
-            incrementScore();
-        }else {
-            alert(`Incorrect.
-            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
-            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-
-            incrementWrongAnswer();
-        }
-    });
-        
-    buttons[1].addEventListener('click', function () {
-        if (questionArray[1].moveSpeed >= questionArray[0].moveSpeed) {
-            alert(`Correct.
-            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
-            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-
-            incrementScore();
-        }else {
-            alert(`Incorrect.
-            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
-            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
-
-            incrementWrongAnswer();
-        }
-    });
-};
-        
-/**
  * Returns an array of all Dota2 Heroes and their attributes in the following order;
  * Hero name, Move speed, Attack range, Attack type, Ultimate ability name.
  */
@@ -254,6 +206,54 @@ function randomHeroes(num1) {
 
     console.log(randomHeroes);
     return randomHeroes;
+};
+
+/**
+ * Generates a question based on heroMoveSpeed.
+ * Changes button image based on heroObject.heroName.
+ * Adds eventlisteners to the answer buttons.
+ */
+function moveSpeedQuestion() {
+    document.getElementById('question-text').textContent = 'Which of these heroes has the greater base movement speed?'
+    
+    questionArray = randomHeroes(2);
+    console.log(questionArray);
+
+    document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
+    document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
+
+    let buttons = document.getElementsByClassName("answer-image");
+    buttons[0].addEventListener('click', function () {
+        if (questionArray[0].moveSpeed >= questionArray[1].moveSpeed) {
+            alert(`Correct.
+            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
+            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
+            
+            incrementScore();
+        }else {
+            alert(`Incorrect.
+            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
+            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
+
+            incrementWrongAnswer();
+        }
+    });
+        
+    buttons[1].addEventListener('click', function () {
+        if (questionArray[1].moveSpeed >= questionArray[0].moveSpeed) {
+            alert(`Correct.
+            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
+            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
+
+            incrementScore();
+        }else {
+            alert(`Incorrect.
+            ${questionArray[0].heroName} has ${questionArray[0].moveSpeed} move speed,
+            while ${questionArray[1].heroName} has ${questionArray[1].moveSpeed}.`);
+
+            incrementWrongAnswer();
+        }
+    });
 };
 
 // Copied from Code Institute: Love Maths project
