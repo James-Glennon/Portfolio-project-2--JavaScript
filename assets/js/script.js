@@ -126,6 +126,7 @@ function returnHeroesArray() {
         ['Bounty Hunter', 325, 150, 'melee', 'Track'],
         ['Broodmother', 285, 150, 'melee', 'Spawn Spiderlings'],
         ['Clinkz', 290, 600, 'ranged', 'Death Pact'],
+        // Drow Ranger icon sourced from Dota 2 fandom wiki
         ['Drow Ranger', 300, 625, 'ranged', 'Marksmanship'],
         ['Ember Spirit', 300, 150, 'melee', 'Fire Remnant'],
         ['Faceless Void', 300, 150, 'melee', 'Chronosphere'],
