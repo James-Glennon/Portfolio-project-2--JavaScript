@@ -1,9 +1,9 @@
-// Declarations
-
 // Wait for page to finish loading before loading the game.
 document.addEventListener('DOMContentLoaded', function () {
-    attackRangeQuestion();
+    randomQuestionType();
 });
+
+// Declarations
 
 // Defines the img#"answer-image" as questionButtons array.
 let questionButtons = document.getElementsByClassName("answer-image");
@@ -196,6 +196,21 @@ function createHeroesObjects() {
     return heroesObjects;
 }
 
+/**
+ * Determines the type of question to be presented to the user.
+ * Currently supported types; attackRange, moveSpeed (2).
+ */
+function randomQuestionType() {
+    let gamemodes = ['attackRange', 'moveSpeed'];
+    let question = Math.floor(Math.random() * gamemodes.length);
+
+    if (question === 0) {
+        moveSpeedQuestion();
+    } else if (question === 1) {
+        attackRangeQuestion();
+    };
+
+};
 
 // moveSpeed functions
 
@@ -203,7 +218,7 @@ function createHeroesObjects() {
  * assigns the values of the previously declared questionArray
  * @returns [{randomHero}, {randomHero(where moveSpeed is NOT equal)}]
  */
- function generateMoveSpeedQuestionArray() {
+function generateMoveSpeedQuestionArray() {
     questionArray = generateRandomMoveSpeedHeroes(2);
     return questionArray;
 }
@@ -302,7 +317,7 @@ function moveSpeedQuestion() {
  * assigns the values of the previously declared questionArray
  * @returns [{randomHero}, {randomHero(where moveSpeed is NOT equal)}]
  */
- function generateAttackRangeQuestionArray() {
+function generateAttackRangeQuestionArray() {
     questionArray = generateRandomAttackRangeHeroes(2);
     return questionArray;
 }
@@ -410,9 +425,7 @@ function incrementScore(function1, function2) {
     questionButtons[0].removeEventListener('click', function1);
     questionButtons[1].removeEventListener('click', function2);
 
-
-    generateAttackRangeQuestionArray();
-    attackRangeQuestion();
+    randomQuestionType();
 }
 
 // Copied from Code Institute: Love Maths project
@@ -430,7 +443,5 @@ function incrementWrongAnswer(function1, function2) {
     questionButtons[0].removeEventListener('click', function1);
     questionButtons[1].removeEventListener('click', function2);
 
-
-    generateAttackRangeQuestionArray();
-    attackRangeQuestion();
+    randomQuestionType();
 }
