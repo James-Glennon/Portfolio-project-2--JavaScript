@@ -208,7 +208,7 @@ function createHeroesObjects() {
  * Currently supported types; attackRange, moveSpeed (2).
  */
 function randomQuestionType() {
-    let gamemodes = ['attackRange', 'moveSpeed', 'baseStr', 'baseAgi'];
+    let gamemodes = ['attackRange', 'moveSpeed', 'baseStr', 'baseAgi', 'baseInt'];
     let question = Math.floor(Math.random() * gamemodes.length);
 
     if (question === 0) {
@@ -219,6 +219,8 @@ function randomQuestionType() {
         baseStrQuestion();
     } else if (question === 3){
         baseAgiQuestion();
+    } else if (question === 4){
+        baseIntQuestion();
     };
 
 };
@@ -630,6 +632,108 @@ function baseAgiQuestion() {
     questionButtons[1].addEventListener('click', eventListenerB);
 };
 
+
+// baseInt functions
+
+
+/**
+ * assigns the values of the previously declared questionArray
+ * @returns [{randomHero}, {randomHero(where baseInt is NOT equal)}]
+ */
+ function generateBaseIntQuestionArray() {
+    questionArray = generateRandomBaseIntHeroes(2);
+    return questionArray;
+}
+
+/**
+ * Selects a random hero from the createHeroesObjects() array.
+ * pushes the selected hero to a randomHeroes array [0].
+ * while randomHeroes.length is less than num1,
+ * loops through randomEntries till baseInt is NOT equal.
+ * pushes the NOT equal entry to the randomHeroes array [1].
+ * only works for a max of 2 entries.
+ * @param {number of random heroes required} num1.
+ */
+function generateRandomBaseIntHeroes(num1) {
+    let allHeroes = createHeroesObjects();
+    randomHeroes = [];
+
+    let randomEntry = allHeroes[(Math.floor(Math.random() * allHeroes.length))];
+    randomHeroes.push(randomEntry);
+
+    while (randomHeroes.length < num1) {
+        randomEntry = allHeroes[(Math.floor(Math.random() * allHeroes.length))];
+
+        if (randomEntry.baseInt === randomHeroes[0].baseInt) {
+            continue;
+        } else {
+            randomHeroes.push(randomEntry);
+        }
+    }
+
+    return randomHeroes;
+};
+
+/**
+ * Generates a question based on heroMoveSpeed.
+ * Changes button image based on heroObject.heroName.
+ */
+function baseIntQuestion() {
+    document.getElementById('question-text').textContent = 'Which of these heroes has the higher base intelligence (level 1)?';
+    document.getElementById('question-image').src = 'assets/images/attribute-icons/intelligence_icon.png';
+    document.getElementById('question-image').alt = 'The DOTA2 intelligence icon.';
+
+
+    generateBaseIntQuestionArray();
+
+    document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
+    document.getElementById('answer1').alt = `${questionArray[0].heroName}`
+    
+    document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
+    document.getElementById('answer2').alt = `${questionArray[1].heroName}`
+
+    /**
+     * defines the function that sets the baseIntQuestion listener for button A.
+     */
+    let eventListenerA = function () {
+        if (questionArray[0].baseInt >= questionArray[1].baseInt) {
+            alert(`Correct.
+            ${questionArray[0].heroName} has ${questionArray[0].baseInt} base intelligence,
+            while ${questionArray[1].heroName} has ${questionArray[1].baseInt}.`);
+
+            incrementScore(eventListenerA, eventListenerB);
+
+        } else {
+            alert(`Incorrect.
+            ${questionArray[0].heroName} has ${questionArray[0].baseInt} base intelligence,
+            while ${questionArray[1].heroName} has ${questionArray[1].baseInt}.`);
+
+            incrementWrongAnswer(eventListenerA, eventListenerB);
+        }
+    };
+    questionButtons[0].addEventListener('click', eventListenerA);
+
+    /**
+     * defines the function that sets the baseIntQuestion listener for button B.
+     */
+    let eventListenerB = function () {
+        if (questionArray[1].baseInt >= questionArray[0].baseInt) {
+            alert(`Correct.
+            ${questionArray[0].heroName} has ${questionArray[0].baseInt} base intelligence,
+            while ${questionArray[1].heroName} has ${questionArray[1].baseInt}.`);
+
+            incrementScore(eventListenerA, eventListenerB);
+
+        } else {
+            alert(`Incorrect.
+            ${questionArray[0].heroName} has ${questionArray[0].baseInt} base intelligence,
+            while ${questionArray[1].heroName} has ${questionArray[1].baseInt}.`);
+
+            incrementWrongAnswer(eventListenerA, eventListenerB);
+        }
+    };
+    questionButtons[1].addEventListener('click', eventListenerB);
+};
 
 
 //Increment functions
