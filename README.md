@@ -3,6 +3,9 @@
 ## Hero Head to Head: A DOTA2 Fan Game
 
 [live web address](https://james-glennon.github.io/Portfolio-project-2--JavaScript/)
+![responsive website layout](assets/images/readme-images/responsive_layout.png)
+
+Image created with [Am I responsive?](https://ui.dev/amiresponsive?url=https://james-glennon.github.io/Portfolio-project-2--JavaScript/)
 
 *Author: James Glennon*
 
@@ -32,7 +35,7 @@ A back-up red/black gradient if the image does not load.
 ![webpage with background backup](assets/images/readme-images/background_gradient.png)
 
 
-And a solid red background should the gradient fails to load.
+And a solid red background should the gradient fail to load.
 
 ![webpage with solid red background](assets/images/readme-images/background_solid.png)
 
@@ -54,6 +57,19 @@ all links open in a new tab, at the intended website,
 and have aria-labels attached in the html
 
 #### Browsers
+
+##### Google Chrome
+The site was created in Chrome and appears to work as intended after repeated testing.
+
+##### Microsoft Edge
+After 20 tests, the site appears to;
+- itterate both score and wrongAnswer correctly.
+- show the correct alert for the question asked.
+
+##### Opera
+After 20 tests, the site appears to;
+- itterate both score and wrongAnswer correctly.
+- show the correct alert for the question asked.
 
 #### Bugs
 
@@ -126,6 +142,11 @@ function generateRandomMoveSpeedHeroes(num1) {
 This function appears to prevent repeat entries, however if the number of different values
 for the selected variable is less than **num1**, the loop would become infinite and crash the site.
 
+Another limitation is that it only prevents the first randomHero from repeating, meaning a third or fourth randomHero
+could repeat the second. This is why max 2 is listed in the doc string.
+
+As a redundancy in the quiz, both button return **Correct** if they are equal.
+
 ##### Unusual Icon File Names
 
 Due to how the html img element are assigned a src attribute, the hero_icons must match the hero
@@ -150,9 +171,12 @@ function moveSpeedQuestion() {
 
 In otherwords, bad practice.
 
-The reason for the heroName format is for potential unimplemented use as a question type.
+The reason for the heroName format is for potential unimplemented use as a question type, and so may need
+to be seen by the user in an alert();
 
 This could be remedied by having an additional key value pair for each heroObject.
+
+*example below*
 
 ```
 filePath:abbadon
@@ -232,7 +256,26 @@ bad practice and 'messy', though I do not have the resources to devise an altern
 
 ![css validator result](assets/images/readme-images/css_validator.png)
 
+lighthouse shows issues with page load performance. This may be remedied by changing all .png
+to .webp , though this would require extensive file converion and script alterations.
+
+![lighthouse test result](assets/images/readme-images/lighthouse.png)
+
 ### Deployment
+
+This site was coded using gitpod and commits made were posted to the main branch, 
+which was hosted on github pages.
+
+### Room for improvement
+
+The ultName and the heroName attributes of the heroObject could be used to create a boolean question,
+rather than a greater than / less than question like all the questions currently implemented.
+
+The table element used as a container for the imageButtons would suit a 4 hero question visually,
+though I don't know how I would rewrite the code to account for two more variables.
+
+an iconLink attribure could be added to the heroObject so the heroIcons could have more conventional,
+lowercase and hypenated filenames.
 
 ### Credits
 
