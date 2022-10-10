@@ -45,6 +45,7 @@ Question text and image which change based on the question.
 
 Two hero images which act as buttons to answer the question on screen.
 The images show a white border when hovered over.
+
 ![answer area of webpage](assets/images/readme-images/answer_area.png)
 
 
