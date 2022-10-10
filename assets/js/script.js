@@ -415,6 +415,8 @@ function attackRangeQuestion() {
 // Copied from Code Institute: Love Maths project
 /**
  * Gets the current score from the DOM and increment by 1.
+ * additionally removes the previously set eventListeners from button 1 and 2.
+ * @param{listenerFunction to be removed from buttonA, listenerFunction to be removed from buttonB}.
  */
 function incrementScore(function1, function2) {
 
