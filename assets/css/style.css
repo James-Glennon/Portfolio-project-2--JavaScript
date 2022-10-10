@@ -28,6 +28,7 @@ table {
     margin-right: auto;
 }
 
+/* Styling for div containing h1 and h2 elements */
 .heading-block {
     color: white;
     background-color: rgb(62, 66, 70);
@@ -38,6 +39,7 @@ table {
     margin-right: auto;
 }
 
+/* style for central question image */
 #question-image {
     width: 150px;
     height: 150px;
@@ -49,4 +51,26 @@ table {
 #answer1:hover, #answer2:hover {
     cursor: pointer;
     border: 2px solid white;
+}
+
+/* Media Querries for screens narrower than 650px*/
+@media screen and (max-width: 650px) {
+    #answer1, #answer2 {
+        height: 128px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #answer1, #answer2 {
+        height: 77px;
+    }
+
+    .heading-block {
+        width: 90%;
+    }
+
+    #question-image {
+        height: 100px;
+        width: 100px;
+    }
 }
