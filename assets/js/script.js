@@ -268,7 +268,7 @@ function moveSpeedQuestion() {
     document.getElementById('answer1').alt = `${questionArray[0].heroName}`
     
     document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
-    document.getElementById('answer2').src = `${questionArray[1].heroName}`
+    document.getElementById('answer2').alt = `${questionArray[1].heroName}`
 
     /**
      * defines the function that sets the moveSpeedQuestion listener for button A.
@@ -370,7 +370,7 @@ function attackRangeQuestion() {
     document.getElementById('answer1').alt = `${questionArray[0].heroName}`
 
     document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
-    document.getElementById('answer2').src = `${questionArray[1].heroName}`
+    document.getElementById('answer2').alt = `${questionArray[1].heroName}`
 
     /**
      * defines the function that sets the attackRangeQuestion listener for button A.
