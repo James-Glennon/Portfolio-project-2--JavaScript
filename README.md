@@ -7,8 +7,8 @@
 *Author: James Glennon*
 
 ### About / Design
-The function of the design is a general knowledge quiz for fans of [dota 2](https://www.dota2.com/home) comparing two
-heros in a head to head.
+The function of the website is a general knowledge quiz for fans of [dota 2](https://www.dota2.com/home) 
+comparing two heros in a head to head.
 
 The two heroes shown should not be identical, and should have different values for the question asked e.g. movement speed.
 
