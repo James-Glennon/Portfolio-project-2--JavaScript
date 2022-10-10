@@ -265,7 +265,10 @@ function moveSpeedQuestion() {
     generateMoveSpeedQuestionArray();
 
     document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
+    document.getElementById('answer1').alt = `${questionArray[0].heroName}`
+    
     document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
+    document.getElementById('answer2').src = `${questionArray[1].heroName}`
 
     /**
      * defines the function that sets the moveSpeedQuestion listener for button A.
@@ -364,7 +367,10 @@ function attackRangeQuestion() {
     generateAttackRangeQuestionArray();
 
     document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
+    document.getElementById('answer1').alt = `${questionArray[0].heroName}`
+
     document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
+    document.getElementById('answer2').src = `${questionArray[1].heroName}`
 
     /**
      * defines the function that sets the attackRangeQuestion listener for button A.
