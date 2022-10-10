@@ -126,6 +126,39 @@ function generateRandomMoveSpeedHeroes(num1) {
 This function appears to prevent repeat entries, however if the number of different values
 for the selected variable is less than **num1**, the loop would become infinite and crash the site.
 
+##### Unusual Icon File Names
+
+Due to how the html img element are assigned a src attribute, the hero_icons must match the hero
+name **EXACTLY**, leading to unconventional file names.
+
+```
+/**
+ * Generates a question based on heroMoveSpeed.
+ * Changes button image based on heroObject.heroName.
+ */
+function moveSpeedQuestion() {
+    document.getElementById('question-text').textContent = 'Which of these heroes has the greater base movement speed?';
+    document.getElementById('question-image').src = 'assets/images/attribute-icons/movement_speed_icon.png';
+    document.getElementById('question-image').alt = 'The DOTA2 movement speed icon.';
+
+
+    generateMoveSpeedQuestionArray();
+
+    document.getElementById('answer1').src = `assets/images/hero-icons/${questionArray[0].heroName}_hero_icon.png`
+    document.getElementById('answer2').src = `assets/images/hero-icons/${questionArray[1].heroName}_hero_icon.png`
+```
+
+In otherwords, bad practice.
+
+The reason for the heroName format is for potential unimplemented use as a question type.
+
+This could be remedied by having an additional key value pair for each heroObject.
+
+```
+filePath:abbadon
+```
+
+This was not implement due to time constraints.
 
 ##### Duplicating/Repeating eventListeners
 
